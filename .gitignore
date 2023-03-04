@@ -319,3 +319,5 @@ dist
 
 # Go workspace file
 go.work
+
+junit.xml
