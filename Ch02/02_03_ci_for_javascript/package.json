@@ -1,0 +1,40 @@
+{
+    "name": "js",
+    "version": "1.0.0",
+    "description": "A javascript API",
+    "author": "",
+    "license": "ISC",
+    "main": "main.js",
+    "scripts": {
+        "start": "nodemon main.js",
+        "lint": "eslint . || echo 'For corrections run: npm run lint -- --fix'",
+        "test": "mocha main_test.js --reporter mocha-junit-reporter --reporter-options mochaFile=./junit.xml"
+    },
+    "dependencies": {
+        "express": "^4.18.2",
+        "nodemon": "^2.0.20",
+        "winston": "^3.8.2"
+    },
+    "devDependencies": {
+        "chai": "^4.3.7",
+        "chai-http": "^4.3.0",
+        "describe": "^1.2.0",
+        "eslint": "^8.34.0",
+        "eslint-config-google": "^0.14.0",
+        "mocha": "^10.2.0",
+        "mocha-junit-reporter": "^2.2.0"
+    },
+    "eslintConfig": {
+        "env": {
+            "browser": true,
+            "commonjs": true,
+            "es2021": true
+        },
+        "extends": "google",
+        "overrides": [],
+        "parserOptions": {
+            "ecmaVersion": "latest"
+        },
+        "rules": {}
+    }
+}
