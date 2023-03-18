@@ -321,3 +321,4 @@ dist
 go.work
 
 junit.xml
+.vim/coc-settings.json
