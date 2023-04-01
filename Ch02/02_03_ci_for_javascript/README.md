@@ -2,8 +2,7 @@
 
 Check node versions in the matrix strategy.
 
-Update the matrix according to the verisons needed for your project and the active versions as reported by [Node.js Release Working Group
-](https://github.com/nodejs/Release).
+Update the matrix according to the verisons needed for your project and the active versions as reported by [Node.js Release Working Group](https://github.com/nodejs/Release).
 
 For example, change:
 
