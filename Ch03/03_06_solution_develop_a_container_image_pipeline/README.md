@@ -1,0 +1,1 @@
+# 03_06_solution_develop_a_container_image_pipeline
