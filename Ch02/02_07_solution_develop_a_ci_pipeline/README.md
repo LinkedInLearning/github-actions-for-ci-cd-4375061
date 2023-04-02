@@ -24,7 +24,7 @@ Help the team set up a continuous integration pipeline using a GitHub Actions st
 
     From the repo homepage, Select `Actions` -> `Python application` -> `Configure`
 
-    If you are using the solution without creating a new workflow using the step above, move the workflow file `python-app.yml` to a directory in the repo named `.github/workflows`.
+    If you are using the solution without creating a new workflow using the step above, move the workflow file [`python-app.yml`](./python-app.yml) to a directory in the repo named `.github/workflows`.
 
 1. Run the workflow and observe the problems the team is referring to.  Note that the `set-output` deprecation warning was present at the time this course was recorded and may be corrected by the time you view this course.
 
