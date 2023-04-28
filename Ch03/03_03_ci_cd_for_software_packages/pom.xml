@@ -10,7 +10,7 @@
   <!-- Update the version each release -->
   <version>1.0</version>
 
-  <!-- Replace with your own values -->
+  <!-- REPLACE WITH YOUR OWN GITHUB_USERNAME -->
   <groupId>GITHUB_USERNAME</groupId>
 
   <distributionManagement>
@@ -18,7 +18,7 @@
       <id>github</id>
       <name>GitHub Packages</name>
 
-      <!-- Replace with your own values -->
+      <!-- REPLACE WITH YOUR OWN GITHUB_USERNAME and GITHUB_REPONAME -->
       <url>https://maven.pkg.github.com/GITHUB_USERNAME/GITHUB_REPONAME</url>
 
     </repository>
