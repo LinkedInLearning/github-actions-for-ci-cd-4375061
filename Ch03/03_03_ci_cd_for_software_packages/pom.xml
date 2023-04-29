@@ -7,8 +7,8 @@
 
   <artifactId>hello-actions</artifactId>
 
-  <!-- Update the version each release -->
-  <version>1.0</version>
+  <!-- UPDATE THE VERSION EACH RELEASE -->
+  <version>1.0.0</version>
 
   <!-- REPLACE WITH YOUR OWN GITHUB_USERNAME -->
   <groupId>GITHUB_USERNAME</groupId>
