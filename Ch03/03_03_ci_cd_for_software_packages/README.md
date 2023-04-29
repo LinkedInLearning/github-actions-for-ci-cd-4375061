@@ -37,6 +37,16 @@ Update code to reference a new version number with each new release.
 
 ## Using the Exercise Files
 1. Create a new repo and upload the files for this lesson
+    Note that the Java files need to be located in subdirectories.
+
+    Specifically, the file [HelloActions.java](./src/main/java/com/example/HelloActions.java) needs to have the following path:
+
+        ./src/main/java/com/example/HelloActions.java
+
+    And the file [HelloActionsTest.java](./src/test/java/com/example/HelloActionsTest.java) needs to have the following path:
+
+        ./src/test/java/com/example/HelloActionsTest.java
+
 1. Edit the [pom.xml](./pom.xml).
 
         Completing this step is key to having the workflow run properly!
