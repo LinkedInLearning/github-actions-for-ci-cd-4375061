@@ -60,6 +60,21 @@ The team has asked you to help them set up a repo for the integration workflow s
 
         needs: [integration]
 
+    _NOTE_: *OPTIONAL* If you would like the final docker image to run on a MacOS system using the M1/M2 chips, add `platforms: linux/amd64,linux/arm64
+` as an option to the `Build and push Docker image` step.  The entry should look like:
+
+        - name: Build and push Docker image
+            id: build-and-push
+            uses: docker/build-push-action@ac9327eae2b366085ac7f6a2d02df8aa8ead720a
+            with:
+            context: .
+            push: ${{ github.event_name != 'pull_request' }}
+            tags: ${{ steps.meta.outputs.tags }}
+            labels: ${{ steps.meta.outputs.labels }}
+            cache-from: type=gha
+            cache-to: type=gha,mode=max
+            platforms: linux/amd64,linux/arm64
+
 1. Commit the workflow and open the *Actions* tab.
 1. Obeserve the workflow.  The `integration/build` job should run first, followed by the `build` job.
 
@@ -70,3 +85,18 @@ The team has asked you to help them set up a repo for the integration workflow s
 1. Open the page for the container image.
 1. Observe the details on the container image page.
 
+# BONUS!  USE THE IMAGE
+Congrats on building the image.  Why not use it too!?
+
+Follow these steps:
+1. Confirm that `docker` is running on your local system.
+1. Download the image that was built, using the `main` branch as a reference:
+
+        docker pull ghcr.io/GITHUB_USERNAME/GITHUB_REPONAME:main
+
+1. In a terminal, start a container with the `docker run` command, and connecting the local port `3000` to the container port `3000`:
+
+        docker run -p 3000:3000 ghcr.io/GITHUB_USERNAME/GITHUB_REPONAME:main
+
+1. In a browser, open the URL [localhost:3000/10.0.0.1](http://localhost:3000/10.0.0.1).
+1. Refresh the page several times to see the mobile app API in action!
