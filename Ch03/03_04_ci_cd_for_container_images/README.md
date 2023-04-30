@@ -41,17 +41,18 @@ Specificaly, this demo implements a delivery workflow that:
 1. Select the running workflow.
 1. Observe the `integration/build` job followed by the `build` job.
 1. Observe the updates to the Actions UI as the `integration/build` job completes.
-1. Obverse any annotations written to the Actions UI as the `build` job completes.  If there are no annotations refering to `Node.js 12`, you can safely skip this step.
+1. Once the workflow completes, select the *Code* tab.
+1. Refresh the page as needed until the package is listed under *Packages*.
+1. Select the package and review the details on the package page.
 
-    At the time this course was published, the *Publish Docker Container* workflow contained actions based on `Node.js 12`.  This causes warnings to be written to the Actions UI.
+# Fixing Warnings in the Annotations Section
+At the time this course was published, the *Publish Docker Container* workflow contained actions based on `Node.js 12`.  This causes warnings to be written to the Actions UI.
 
-    To remove this warnings, several actions need to be updated to use newer versions.  Update your workflow to use the following actions with the indicated versions:
+To remove these warnings, several actions need to be updated to use newer versions.
+
+Update your workflow to use the following actions with the indicated versions or newer versions if available:
 
         uses: docker/setup-buildx-action@v2.5.0
         uses: docker/login-action@v2.1.0
         uses: docker/metadata-action@v4.4.0
         uses: docker/build-push-action@v4.0.0
-
-1. Once the workflow completes, select the *Code* tab.
-1. Refresh the page as needed until the package is listed under *Packages*.
-1. Select the package and review the details on the package page.

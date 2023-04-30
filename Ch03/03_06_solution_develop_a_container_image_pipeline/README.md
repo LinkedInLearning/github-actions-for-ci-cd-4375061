@@ -76,7 +76,7 @@ The team has asked you to help them set up a repo for the integration workflow s
 1. Commit the workflow and open the *Actions* tab.
 1. Obeserve the workflow.  The `integration/build` job should run first, followed by the `build` job.
 
-    _NOTE: If warning annotations are present in the build log, see the [README file in "03_04_ci_cd_for_container_images"](./README.md03_04_ci_cd_for_container_images) for details on how to fix the warnings._
+    _NOTE: If warning annotations are present in the build log, see the [README file in "03_04_ci_cd_for_container_images"](../03_04_ci_cd_for_container_images/README.md) for details on how to fix the warnings._
 
 1. When the build completes open the main page for the repo by selecting *Code*.
 1. Confirm that a container image has been created.
