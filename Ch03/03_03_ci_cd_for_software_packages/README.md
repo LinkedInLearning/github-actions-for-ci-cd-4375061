@@ -47,7 +47,7 @@ Update code to reference a new version number with each new release.
 
         ./src/test/java/com/example/HelloActionsTest.java
 
-1. Edit the [pom.xml](./pom.xml).
+1. Edit [pom.xml](./pom.xml).
 
         Completing this step is key to having the workflow run properly!
 
