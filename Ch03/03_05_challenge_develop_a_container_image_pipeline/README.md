@@ -16,7 +16,7 @@ The team has asked you to help them set up a repo for the integration workflow s
     If you use the supplied workflow, move it into the `.github/workflows` directory.
 
 1. Update the workflow so it can be called from another workflow.
-1. In the second repo, add a workflow that calls the integration workflow.
+1. In the second repo, add the exercise files and then add a workflow that calls the integration workflow.
 
     Use the supplied workflow, [docker-publish.yml](./docker-publish.yml), or create a workflow using the starter workflow for *Publish Docker Container*.
 
