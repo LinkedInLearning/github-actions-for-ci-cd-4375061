@@ -46,13 +46,19 @@ Specificaly, this demo implements a delivery workflow that:
 1. Select the package and review the details on the package page.
 
 # Fixing Warnings in the Annotations Section
-At the time this course was published, the *Publish Docker Container* workflow contained actions based on `Node.js 12`.  This causes warnings to be written to the Actions UI.
+At the time this course was published, the *Publish Docker Container* workflow contained actions based on `Node 12`.
 
-To remove these warnings, several actions need to be updated to use newer versions.
+[Node 12 has been out of support since April 2022 and has been deprecated by Github Actions](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/).
 
-Update your workflow to use the following actions with the indicated versions or newer versions if available:
+This causes warnings to be written to the Actions UI.
 
-        uses: docker/setup-buildx-action@v2.5.0
-        uses: docker/login-action@v2.1.0
-        uses: docker/metadata-action@v4.4.0
-        uses: docker/build-push-action@v4.0.0
+To remove these warnings, the version for actions used in this workflow need to be updated.
+
+Update your workflow to use the following actions with the indicated versions.  Also, check the provided Marketplace page to see if newer versions are available.
+
+|Action Marketplace Page|Action Name and Version|
+|--|--|
+|[Docker Setup Buildx](https://github.com/marketplace/actions/docker-setup-buildx)|`docker/setup-buildx-action@v2.5.0`|
+|[Docker Login](https://github.com/marketplace/actions/docker-login)|`docker/login-action@v2.1.0`|
+|[Docker Metadata action](https://github.com/marketplace/actions/docker-metadata-action)|`docker/metadata-action@v4.4.0`|
+|[Build and push Docker images](https://github.com/marketplace/actions/build-and-push-docker-images)|`docker/build-push-action@v4.0.0`|
