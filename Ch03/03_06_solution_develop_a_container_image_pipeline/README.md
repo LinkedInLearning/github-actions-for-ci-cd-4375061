@@ -9,9 +9,7 @@ The team has asked you to help them set up a repo for the integration workflow s
 
 # SOLUTION
 1. Create two new repos.
-1. In the first repo, add a workflow for a Python application.
-
-    Use a starter workflow.
+1. In the first repo, add a workflow for a Python application.  Create a workflow using the starter workflow for *Python applications*.
 
     From the repo homepage, Select:
 
@@ -26,9 +24,9 @@ The team has asked you to help them set up a repo for the integration workflow s
         on:
           workflow_call:
 
-1. In the second repo, add the exercise files and then add a workflow that calls the integration workflow.
+1. In the second repo, add the exercise files and then create a workflow using the starter workflow for *Publish Docker Container*.  Update the workflow to call the integration workflow.
 
-    Use a starter workflow. From the repo homepage, Select:
+    From the repo homepage, Select:
 
     `Actions` -> `Publish Docker Container` -> `Configure`.
 
@@ -52,7 +50,7 @@ The team has asked you to help them set up a repo for the integration workflow s
 
 1. Add a job to build and publish the code as a container image once the integration tests are complete.
 
-    This requirement is partially completed in the previous step by adding the supplied workflow or using a starter workflow.
+    This requirement is partially completed in the previous step by adding the starter workflow.
 
     However, the workflow still needs to be modified so the build and publish steps run _after_ the integration tests.
 
