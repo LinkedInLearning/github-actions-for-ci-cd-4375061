@@ -13,7 +13,7 @@ The team has asked you to help them set up a repo for the integration workflow s
 
     From the repo homepage, Select:
 
-    `Actions` -> `Python application` -> `Configure`.
+    `Actions` -> Search for `Python application` -> `Configure`.
 
 1. Update the workflow so it can be called from another workflow.
 
