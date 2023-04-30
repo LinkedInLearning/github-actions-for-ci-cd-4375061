@@ -11,7 +11,7 @@ All code in the repo needs to use a specific version of Pandas, a popular Python
 
 They’d also like to find some way to make it easier to summarize the tests being run in the repo.
 
-## REQUIREMENTS
+## SOLUTION
 Help the team set up a continuous integration pipeline using a GitHub Actions starter workflow.
 
 1. Start by creating a new repo and adding the exercise files for this challenge.
