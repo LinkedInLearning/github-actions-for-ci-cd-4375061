@@ -11,11 +11,9 @@ The team has asked you to help them set up a repo for the integration workflow s
 1. Create two new repos.
 1. In the first repo, add a workflow for a Python application.
 
-    Use the supplied workflow,[python-app.yml](./python-app.yml), or create a workflow using the starter workflow for *Python applications*.
+    Use a starter workflow.
 
-    If you use the supplied workflow, move it into the `.github/workflows` directory.
-
-    If you are using a starter workflow, from the repo homepage, Select:
+    From the repo homepage, Select:
 
     `Actions` -> `Python application` -> `Configure`.
 
@@ -26,7 +24,7 @@ The team has asked you to help them set up a repo for the integration workflow s
     Add a trigger for `workflow_call` so the `on` section appears as follows:
 
         on:
-            workflow_call:
+          workflow_call:
 
 1. In the second repo, add the exercise files and then add a workflow that calls the integration workflow.
 
@@ -46,10 +44,6 @@ The team has asked you to help them set up a repo for the integration workflow s
             # REPLACE GITHUB_USERNAME and GITHUB_REPONAME with your own values.
             # This is needed for the workflow_call event to complete successfully.
             uses: GITHUB_USERNAME/GITHUB_REPONAME/.github/workflows/python-app.yml@main
-
-    To use the supplied workflow, [docker-publish.yml](./docker-publish.yml), move it into the `.github/workflows` directory.
-
-    In either case, edit the file so that the values for `GITHUB_USERNAME` and `GITHUB_REPONAME` are replaced to use your own username and repo name.
 
     Additionally, add permissions for the integration workflow.  After the `uses` block, add:
 
