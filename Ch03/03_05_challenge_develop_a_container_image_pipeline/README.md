@@ -26,7 +26,6 @@ The team has asked you to help them set up a repo for the integration workflow s
 
         permissions:
           contents: read
-          packages: write
 
 1. Add a job to build and publish the code as a container image once the integration tests are complete.
 

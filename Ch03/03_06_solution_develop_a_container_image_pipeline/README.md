@@ -15,7 +15,9 @@ The team has asked you to help them set up a repo for the integration workflow s
 
     If you use the supplied workflow, move it into the `.github/workflows` directory.
 
-    If you are using a starter workflow, from the repo homepage, Select `Actions` -> `Python application` -> `Configure`.
+    If you are using a starter workflow, from the repo homepage, Select:
+
+    `Actions` -> `Python application` -> `Configure`.
 
 1. Update the workflow so it can be called from another workflow.
 
@@ -28,9 +30,17 @@ The team has asked you to help them set up a repo for the integration workflow s
 
 1. In the second repo, add the exercise files and then add a workflow that calls the integration workflow.
 
-    Use a starter workflow. From the repo homepage, Select `Actions` -> `Publish Docker Container`.
+    Use a starter workflow. From the repo homepage, Select:
 
-    Create an entry under `jobs` that calls the integration workflow from the first repo.  The entry should have an ID and a `uses` block that refers to the first repo, the workflow file located in the `.github/workflows`, and a Git reference.  The entry should be simliar to:
+    `Actions` -> `Publish Docker Container` -> `Configure`.
+
+    Create an entry under `jobs` that calls the integration workflow from the first repo.  The entry should have an ID and a `uses` block that:
+
+    - refers to the first repo
+    - includes the path `.github/workflows` and the workflow name
+    - and a Git reference.
+
+    The complete entry should be simliar to:
 
         integration:
             # REPLACE GITHUB_USERNAME and GITHUB_REPONAME with your own values.
@@ -45,7 +55,6 @@ The team has asked you to help them set up a repo for the integration workflow s
 
         permissions:
           contents: read
-          packages: write
 
 1. Add a job to build and publish the code as a container image once the integration tests are complete.
 
