@@ -1,0 +1,62 @@
+Review and create
+Step 1: Configure task definition and containers
+Edit
+Task definition configuration
+Task definition family
+use-start-dock
+Container - 1
+Essential container
+Container details
+Name
+use-start-dock
+Image URI
+ghcr.io/console6500/use-start-dock:main
+Essential container
+Yes
+Private registry
+-
+Port mappings
+Host port:Container port
+Protocol
+Port name
+App protocol
+-:3000	tcp	use-start-dock-3000-tcp	http
+Environment variables - optional
+HealthCheck - optional
+Docker configuration - optional
+Container size - optional
+Step 2: Configure environment, storage, monitoring, and tags
+Edit
+Environment
+App environment
+FARGATE
+Operating system/Architecture
+Linux/X86_64
+Task size
+CPU
+.5 vCPU
+Memory
+1 GB
+Task roles, network mode
+Storage
+Ephemeral storage
+Amount
+-
+Monitoring and logging
+Container log collection
+Off
+Trace collection
+Off
+Metric collection
+Off
+Tags
+No tags added
+Cancel
+Previous
+Create
+
+
+CloudShell
+Feedback
+Language
+© 2023, Amazon Web Services, Inc. or its affiliates.

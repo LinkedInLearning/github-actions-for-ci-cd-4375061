@@ -13,13 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Expose port 3000 for the Flask web API
-ENV FLASK_RUN_PORT=3000
+# Expose port 3000 for the FastAPI web API
 EXPOSE 3000
 
-# Define environment variable for Flask app
-ENV FLASK_APP app.py
-
-# Run the command to start the Flask app
-CMD ["flask", "run", "--host=0.0.0.0"]
+# Start the FastAPI app using uvicorn
+CMD ["python", "main.py"]
 
