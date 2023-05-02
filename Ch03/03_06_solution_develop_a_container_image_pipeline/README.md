@@ -96,5 +96,5 @@ Follow these steps:
 
         docker run -p 3000:3000 ghcr.io/GITHUB_USERNAME/GITHUB_REPONAME:main
 
-1. In a browser, open the URL [localhost:3000/10.0.0.1](http://localhost:3000/10.0.0.1).
-1. Refresh the page several times to see the mobile app API in action!
+1. In a browser, open the URL [localhost:3000/](http://localhost:3000/).
+1. Follow the instructions to see the API in action!
