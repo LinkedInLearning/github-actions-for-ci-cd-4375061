@@ -28,7 +28,8 @@ GitHub Pages can also be configured to use a custom domain.
 
 # Using the Exercise Files
 1. Create a new repo and add the exercise files for this lesson.
-1. Make sure all `*.png` files are located in the `images` directory.
+
+    Make sure all `*.png` files are located in the `images` directory.
 
     _*Note that images will not display properly unless that are located in the `images` directory.*_
 
