@@ -22,11 +22,6 @@ Project sites are available at URLs simliar to the following:
 
 GitHub Pages can also be configured to use a custom domain.
 
-# Reccommended Reading
-- [GitHub Pages Documentation](https://docs.github.com/en/pages)
-
-- [GitHub Pages Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
-
 # Jekyll Front Matter
 To help Jekyll with compiling and publishing Markdown files, files contain text near the top of the file called [front matter](https://jekyllrb.com/docs/front-matter/).
 
@@ -38,6 +33,10 @@ To help Jekyll with compiling and publishing Markdown files, files contain text 
     permalink: /
     ---
 
+# Reccommended Reading
+- [GitHub Pages Documentation](https://docs.github.com/en/pages)
+
+- [GitHub Pages Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
 
 # Using the Exercise Files
 1. Create a new repo and add the exercise files for this lesson.
