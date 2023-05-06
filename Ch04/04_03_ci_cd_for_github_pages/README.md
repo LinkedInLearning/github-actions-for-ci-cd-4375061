@@ -1,9 +1,13 @@
 # 04_03_ci_cd_for_github_pages
-    Warning: GitHub Pages sites are publicly available on the internet, even if the repository for the site is private.
+    Warning: GitHub Pages sites are publicly available on the
+    internet, even if the repository for the site is private.
 
-    If you have sensitive data in your site's repository, you may want to remove the data before publishing a site using GitHub Pages.
+    If you have sensitive data in your site's repository,
+    you may want to remove the data before publishing a
+    site using GitHub Pages.
 
-    Specifically, do not publish repository secrets that may include passwords or credentials.
+    Specifically, do not publish repository secrets
+    that may include passwords or credentials.
 
 [GitHub Pages](https://pages.github.com/) is a free service provided by GitHub that allows users to host static websites directly from their GitHub repositories.
 
