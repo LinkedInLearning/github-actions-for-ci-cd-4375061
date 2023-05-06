@@ -1,13 +1,7 @@
 # 04_03_ci_cd_for_github_pages
-    Warning: GitHub Pages sites are publicly available on the
-    internet, even if the repository for the site is private.
-
-    If you have sensitive data in your site's repository,
-    you may want to remove the data before publishing a
-    site using GitHub Pages.
-
-    Specifically, do not publish repository secrets
-    that may include passwords or credentials.
+> Warning: GitHub Pages sites are publicly available on the internet, even if the repository for the site is private.
+> If you have sensitive data in your site's repository, you may want to remove the data before publishing a site using GitHub Pages.
+> Specifically, do not publish repository secrets that may include passwords or credentials.
 
 [GitHub Pages](https://pages.github.com/) is a free service provided by GitHub that allows users to host static websites directly from their GitHub repositories.
 
@@ -16,7 +10,7 @@ Static sites can be stored in a repo as HTML, JavaScript, and CSS.  Or they can 
 For Markdown sites, a static site generator is used to convert Markdown files into HTML.
 
 Popular static site generators include:
-- [Jeykll](https://jekyllrb.com/)
+- [Jekyll](https://jekyllrb.com/)
 - [Hugo](https://gohugo.io/)
 - [Gatsby](https://www.gatsbyjs.com/)
 
@@ -30,6 +24,17 @@ GitHub Pages can also be configured to use a custom domain.
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
 
 - [GitHub Pages Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
+
+# Jekyll Front Matter
+To help Jekyll with compiling and publishing Markdown files, files contain text near the top of the file called [front matter](https://jekyllrb.com/docs/front-matter/).
+
+> Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
+
+    ---
+    layout: page
+    title: Welcome to my site
+    permalink: /
+    ---
 
 
 # Using the Exercise Files
