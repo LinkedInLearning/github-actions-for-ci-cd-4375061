@@ -1,22 +1,34 @@
-name: Deploy AWS App Runner
+name: "3-Deployment"
 on:
   workflow_call:
+    inputs:
+      environment:
+        required: true
+        type: string
   workflow_dispatch:
+    inputs:
+      environment:
+        required: true
+        type: choice
+        description: Enter the target environment for the deployment
+        options:
+        - Staging
+        - Production
 
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  deploy-staging:
+  build:
     environment:
-      name: Staging
+      name: ${{ inputs.environment }}
       url: ${{ vars.URL }}
     runs-on: ubuntu-latest
     permissions:
       packages: read
     concurrency:
-      group: deploy-staging
+      group: deploy-${{ inputs.environment }}
       cancel-in-progress: false
     steps:
       - name: Configure AWS Credentials
@@ -29,12 +41,18 @@ jobs:
       - name: Login to Amazon ECR
         uses: aws-actions/amazon-ecr-login@v1
 
-      - name: Push Image to ECR
+      - name: Deploy staging with push to ECR
+        if: ${{ inputs.environment }} == 'Staging'
         id: push
         run: |
           docker pull ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main
           docker tag ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:main ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
           docker push ${{ secrets.AWS_ACCOUNT_NUMBER }}.dkr.ecr.${{ vars.AWS_REGION }}.amazonaws.com/${{ github.event.repository.name }}
+
+      - name: Deploy production with aws CLI
+        if: ${{ inputs.environment }} == 'Production'
+        run: |
+          aws apprunner start-deployment --service-arn="${{ vars.SERVICE_ARN }}"
 
       - name: Wait for Deployment to Begin
         run: |
@@ -44,10 +62,10 @@ jobs:
           do
             echo "$(date) ${STATUS}"
             STATUS=$(aws apprunner describe-service --query="Service.Status" --output=text --service-arn="${{ vars.SERVICE_ARN }}")
-            sleep 30;
+            sleep 10;
           done
 
-      - name: Wait for Deployment Status
+      - name: Wait for Deployment to Complete
         id: status
         timeout-minutes: 10
         run: |
@@ -60,66 +78,6 @@ jobs:
             sleep 30;
           done
           echo "deployment_status=${STATUS}" >> "$GITHUB_OUTPUT"
-
-      - name: Check Deployment Status
-        id: check
-        run: |
-          if [ "${{ steps.status.outputs.deployment_status }}" == "RUNNING" ]; then
-            echo "Deployment successful"
-          else
-            echo "Deployment failed: ${{ steps.status.outputs.deployment_status }}"
-            exit 1
-          fi
-
-  deploy-production:
-    environment:
-      name: Production
-      url: ${{ vars.URL }}
-    needs: [deploy-staging]
-    runs-on: ubuntu-latest
-    concurrency:
-      group: deploy-production
-      cancel-in-progress: false
-
-    steps:
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v2
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ vars.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        uses: aws-actions/amazon-ecr-login@v1
-
-      - name: Start App Runner Deployment
-        run: |
-          aws apprunner start-deployment --service-arn="${{ vars.SERVICE_ARN }}"
-
-      - name: Wait for Deployment to Begin
-        run: |
-          STATUS=$(aws apprunner describe-service --query="Service.Status" --output=text --service-arn="${{ vars.SERVICE_ARN }}")
-
-          until [ "${STATUS}" == "OPERATION_IN_PROGRESS" ];
-          do
-            echo "$(date) ${STATUS}"
-            STATUS=$(aws apprunner describe-service --query="Service.Status" --output=text --service-arn="${{ vars.SERVICE_ARN }}")
-            sleep 30;
-          done
-
-      - name: Wait for Deployment Status
-        id: status
-        timeout-minutes: 10
-        run: |
-          STATUS=$(aws apprunner describe-service --query="Service.Status" --output=text --service-arn="${{ vars.SERVICE_ARN }}")
-
-          while [ "${STATUS}" == "OPERATION_IN_PROGRESS" ];
-          do
-            echo "$(date) ${STATUS}"
-            STATUS=$(aws apprunner describe-service --query="Service.Status" --output=text --service-arn="${{ vars.SERVICE_ARN }}")
-            echo "deployment_status=${STATUS}" >> "$GITHUB_OUTPUT"
-            sleep 15;
-          done
 
       - name: Check Deployment Status
         id: check

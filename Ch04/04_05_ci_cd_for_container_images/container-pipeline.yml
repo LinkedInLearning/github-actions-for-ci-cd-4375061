@@ -1,0 +1,53 @@
+name: "0-Container Deployment Pipeline"
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push:
+    branches: [ "main" ]
+    # Publish semver tags as releases.
+    tags: [ 'v*.*.*' ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+jobs:
+  integration:
+    uses: ./.github/workflows/integrate-python-app.yml
+    permissions:
+      contents: read
+
+  delivery:
+    needs: [integration]
+    uses: ./.github/workflows/deliver-container-image.yml
+    permissions:
+      contents: read
+      packages: write
+      id-token: write
+
+  deploy-staging:
+    needs: [delivery]
+    uses: ./.github/workflows/deploy-aws-app-runner.yml
+    with:
+      environment: Staging
+    permissions:
+      packages: read
+    secrets: inherit
+
+  deploy-production:
+    needs: [deploy-staging]
+    uses: ./.github/workflows/deploy-aws-app-runner.yml
+    with:
+      environment: Production
+    permissions:
+      packages: read
+    secrets: inherit

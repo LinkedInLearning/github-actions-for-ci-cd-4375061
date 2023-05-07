@@ -1,4 +1,4 @@
-name: Docker
+name: "2-Delivery"
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -6,12 +6,7 @@ name: Docker
 # documentation.
 
 on:
-  push:
-    branches: [ "main" ]
-    # Publish semver tags as releases.
-    tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ "main" ]
+  workflow_call:
   workflow_dispatch:
 
 env:
@@ -21,25 +16,7 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  deployment:
-    uses: ./.github/workflows/deploy-aws-app-runner.yml
-    needs: [build]
-    permissions:
-      packages: read
-    secrets: inherit
-
-  integration:
-    # REPLACE GITHUB_USERNAME and GITHUB_REPONAME with your own values.
-    # This is needed for the workflow_call event to complete successfully.
-    uses: ./.github/workflows/python-app.yml
-
-    # Pass permissions to the called workflow
-    permissions:
-      contents: read
-
   build:
-    needs: [integration]
-
     runs-on: ubuntu-latest
     permissions:
       contents: read
