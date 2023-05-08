@@ -13,8 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Expose port 3000 for the FastAPI web API
-EXPOSE 3000
+# Expose port 8080 for the FastAPI web API
+EXPOSE 8080
 
 # Start the FastAPI app using uvicorn
 CMD ["python", "app.py"]

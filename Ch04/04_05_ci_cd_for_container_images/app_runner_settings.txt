@@ -20,7 +20,7 @@ Host port:Container port
 Protocol
 Port name
 App protocol
--:3000	tcp	use-start-dock-3000-tcp	http
+-:8080	tcp	use-start-dock-8080-tcp	http
 Environment variables - optional
 HealthCheck - optional
 Docker configuration - optional

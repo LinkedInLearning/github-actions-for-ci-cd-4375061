@@ -4,7 +4,7 @@ from random import choice
 from re import match
 import locations
 
-PORT = 3000
+PORT = 8080
 
 app = FastAPI()
 
