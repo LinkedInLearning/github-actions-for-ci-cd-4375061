@@ -1,0 +1,13 @@
+#!/bin/bash -xe
+exec > >(tee /var/log/user-data.log) 2>&1
+set
+
+apt-get update
+
+apt-get --quiet --assume-yes install git binutils build-essential libssl-dev
+
+apt-get --quiet --assume-yes install nginx
+
+git clone https://github.com/LinkedInLearning/learning-nginx-2492317.git
+
+tar xzvf ./learning-nginx-2492317/Binaryville_robot_website_LIL_107684.tgz --directory /var/www/html
