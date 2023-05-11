@@ -1,0 +1,69 @@
+name: Final Deployment Pipeline
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "- Lint the code and run unit tests"
+
+  build:
+    needs: [integration]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "- Build the artifact"
+
+  test-artifact:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: echo "- Simulate and test the artifact"
+
+  development:
+    environment: Development
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "- Auto-deploy the artifact to the development environment"
+
+  staging:
+    environment: Staging
+    needs: [development, test-artifact]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "After development envirionment is deployed..."
+          echo "and after the artifact tests have passed..."
+          echo "- Auto-deploy the artifact to the staging environment"
+
+  test-staging:
+    needs: staging
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "- Test the staging environment"
+
+  production:
+    environment: Production
+    needs: [test-staging]
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "After staging envirionment is deployed..."
+          echo "and after the staging tests have passed..."
+          echo "require a review before deploying to the production envirionment, then..."
+          echo "- Deploy the artifact to the production environment"
+
+  test-production:
+    needs: [production]
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "- Test the artifact in the production environment"
+      - run: echo "# Everything completed successfully!" >> $GITHUB_STEP_SUMMARY
