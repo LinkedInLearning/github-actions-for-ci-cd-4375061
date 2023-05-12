@@ -12,7 +12,7 @@ To start, the workflow jobs are being run in the wrong order.  And while some of
 They’ve asked you to help them straighten out the pipeline, set up more control for deployment to particular environments, and provide a summary once the pipeline completes.
 
 # Solution
-1. Create a new repo and add the exercise files. Observe the provided workflow.
+1. Create a new repo and add the exercise files. Run and observe the provided workflow.
 
     Move the provided workflow into the `.github/workflows` directory.
 
@@ -22,7 +22,7 @@ They’ve asked you to help them straighten out the pipeline, set up more contro
 
     ![The initial pipline](./initial-pipeline.png)
 
-1. Edit the workflow to place the jobs in order
+1. Edit the workflow to place the jobs in order.
 
    The provided workflow, [initial-pipeline.yml](./initial-pipeline.yml), has some order to it but the jobs are not configured properly to run in sequence.
 
@@ -87,11 +87,11 @@ They’ve asked you to help them straighten out the pipeline, set up more contro
         production:
             environment: Production
 
-1. Use continuous deployment for the Development and Staging environments
+1. Use continuous deployment for the Development and Staging environments.
 
     If the `development` and `staging` jobs are in the correct order and configured with `needs` as previously mentioned, this requirement should be satisfied.
 
-1. Protect deployments to the Production environment with a review
+1. Protect deployments to the Production environment with a review.
 
     1. Select `Settings` -> `Environments` -> `production`.
     1. Select the checkbox next to `Required reviewers`.
@@ -99,7 +99,7 @@ They’ve asked you to help them straighten out the pipeline, set up more contro
     1. Select `Save protection rules`.
     1. Run the workflow using the `workflow_dispatch` trigger to confirm the `production` environment prompts for a review before running.
 
-1. Update the summary to indicate all jobs have completed successfully
+1. Update the summary to indicate all jobs have completed successfully.
 
     Modify the last step in the `test-production` job so that the `echo` is directed to `>> $GITHUB_STEP_SUMMARY`:
 
