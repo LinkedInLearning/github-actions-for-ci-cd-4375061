@@ -1,0 +1,101 @@
+name: 99-Destroy Resources
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plan:
+    name: Terraform Plan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.6
+          
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Plan
+        continue-on-error: true
+        id: plan
+        run: |
+          terraform plan -destroy -input=false -no-color -out=tfplan
+          terraform show -no-color tfplan > plan.txt
+      - name: Display the plan summary
+        id: display
+        run: |
+          {
+            awk '/No changes. No objects need to be destroyed./ {
+              print "## " $0
+              print "Either you have not created any objects yet or the existing objects were already deleted outside of Terraform."
+              exit
+            }' plan.txt
+          
+            awk '/Terraform will perform the following actions:/ {
+              print "## Terraform will perform the following actions:"
+              print "|Action|Resource|"
+              print "|------|--------|"
+              exit
+            }' plan.txt
+          
+            awk '/Terraform used the selected/{ next } /will be/ || /must be/ {print "|" $5 "|" $2 "|"; next} /Plan:/{ print "## " $0; next }' plan.txt \
+              | sed -e 's/created/:white_check_mark: create/' -e 's/destroyed/:bangbang: destroy/' -e 's/replaced/:recycle: replace/'
+          } > plan.md
+          cat plan.md >> $GITHUB_STEP_SUMMARY
+
+  apply:
+    needs: [plan]
+    if: github.ref == 'refs/heads/main'
+    name: Terraform Apply
+    runs-on: ubuntu-latest
+    environment: Production
+    concurrency: Production
+
+    steps:
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          terraform_version: 1.4.6
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Apply
+        id: apply
+        run: terraform apply -destroy -no-color -auto-approve -input=false | tee apply.txt
+
+      - name: Display the apply summary
+        id: display
+        run: |
+          {
+            awk '/::debug::stdout:/{ next } /Apply complete!/ { print "## " $0; exit }' apply.txt
+          } > apply.md
+          
+          cat apply.md >> $GITHUB_STEP_SUMMARY
