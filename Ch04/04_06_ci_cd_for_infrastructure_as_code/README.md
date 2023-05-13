@@ -2,6 +2,14 @@
 
 
 ## Recommended Reading
+- [Adding a job summary with $GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)
+
+- [GitHub Markdown - Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
+
+- [GitHub Markdown - Emoji-Cheat-Sheet.](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+
+- [LinkedIn Learning - Learning Terraform](https://www.linkedin.com/learning/learning-terraform-15575129/learn-terraform-for-your-cloud-infrastructure)
+
 - [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
 # Using the Exercise Files
@@ -83,7 +91,7 @@
             description = "The total number of VMs to create"
         }
 
-    Change `default     = 3` -> `default     = 2`.
+    Change `default = 3` -> `default = 4`.
 
 1. Select `Commit changes`.
 1. Select `Create a new branch for this commit and start a pull request`.  Then select, `Propose changes`.
