@@ -1,4 +1,4 @@
-# 02_02 Use starter pipelines in GitHub Actions
+# 02_02 Use starter workflows in GitHub Actions
 If you’re creating a new workflow, GitHub will analyze any files stored in your repo and suggest workflows based on the names of the files, the programming language the files contain, and any frameworks that might be configured for your project.
 
 ## Identifying Projects by Files
