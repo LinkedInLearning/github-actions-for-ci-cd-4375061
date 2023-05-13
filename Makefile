@@ -1,5 +1,7 @@
 README_FILES = $(shell find . -name 'README.md' -not -path '*/node_modules/*' -not -path './.git/*')
 
+all: spellcheck clean
+
 spellcheck: $(README_FILES)
 	# Foreach README.md file, run aspell
 	@for file in $(README_FILES); do \
@@ -9,7 +11,5 @@ spellcheck: $(README_FILES)
 clean:
 	# Remove all backup files created by aspell
 	@find . -name '*.md.bak' -exec rm -vf {} \;
-
-all: spellcheck clean
 
 .PHONY: all spellcheck clean
