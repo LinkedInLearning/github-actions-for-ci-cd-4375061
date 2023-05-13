@@ -52,7 +52,7 @@ Help the team set up a continuous integration pipeline using a GitHub Actions st
 
 1. Update the workflow to add a summary of the tests being run.
 
-    Update the worflow so that it has permissions to create checks in the Actions interface.
+    Update the workflow so that it has permissions to create checks in the Actions interface.
 
     Add the following just after `runs-on: ubuntu-latest`:
 

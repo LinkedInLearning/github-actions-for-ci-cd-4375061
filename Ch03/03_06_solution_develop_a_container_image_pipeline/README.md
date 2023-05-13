@@ -36,7 +36,7 @@ The team has asked you to help them set up a repo for the integration workflow s
     - includes the path `.github/workflows` and the workflow name
     - and a Git reference.
 
-    The complete entry should be simliar to:
+    The complete entry should be similar to:
 
         integration:
             # REPLACE GITHUB_USERNAME and GITHUB_REPONAME with your own values.
@@ -74,7 +74,7 @@ The team has asked you to help them set up a repo for the integration workflow s
             platforms: linux/amd64,linux/arm64
 
 1. Commit the workflow and open the *Actions* tab.
-1. Obeserve the workflow.  The `integration/build` job should run first, followed by the `build` job.
+1. Observe the workflow.  The `integration/build` job should run first, followed by the `build` job.
 
     _NOTE: If warning annotations are present in the build log, see the [README file in "03_04_ci_cd_for_container_images"](../03_04_ci_cd_for_container_images/README.md#fixing-warnings-in-the-annotations-section) for details on how to fix the warnings._
 

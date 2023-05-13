@@ -16,7 +16,7 @@ Popular static site generators include:
 - [Hugo](https://gohugo.io/)
 - [Gatsby](https://www.gatsbyjs.com/)
 
-Project sites are available at URLs simliar to the following:
+Project sites are available at URLs similar to the following:
 - `http(s)://<username>.github.io/<repository>`
 - `http(s)://<organization>.github.io/<repository>`.
 
@@ -33,7 +33,7 @@ To help Jekyll with compiling and publishing Markdown files, files contain text 
     permalink: /
     ---
 
-# Reccommended Reading
+# Recommended Reading
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
 
 - [GitHub Pages Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
@@ -47,7 +47,7 @@ To help Jekyll with compiling and publishing Markdown files, files contain text 
 
 1. From the repo homepage, select **Settings**.
 1. On the Settings page, under **Code and automation**, select **Pages**.
-1. On the *GitHub Pages* page, under **Build and Deployment**, select the dropdown under **Source**.
+1. On the *GitHub Pages* page, under **Build and Deployment**, select the drop-down under **Source**.
 1. Select **GitHub Actions**.
 1. Note that repos that only contain HTML, JavaScript, and CSS can be deployed using the *Static HTML* workflow.
 1. Under **GitHub Pages Jekyll**, select **Configure**.
@@ -55,7 +55,7 @@ To help Jekyll with compiling and publishing Markdown files, files contain text 
     - The workflow is triggered by pushes to the main branch or workflow dispatch
     - Permissions are requested for reading the repo, writing to the github pages service, and writing to
     the ID token.
-    - The workflow establishes concurrecny at the workflow level for a group named "pages" and will wait for in builds that are in progress to complete.
+    - The workflow establishes concurrency at the workflow level for a group named "pages" and will wait for in builds that are in progress to complete.
     - the **build** job checkouts out the repo and runs the `jekyll-build-pages` action to compile the site into a directory containing the HTML, JavaScript, and CSS.
     - The `upload-pages-artifact` action is used to create an artifact for the deploy step.
     - The **deploy** job waits for the build job to complete and then deploys the artifact using the `deploy-pages` action.

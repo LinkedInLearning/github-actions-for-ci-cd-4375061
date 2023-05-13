@@ -20,7 +20,7 @@ They’ve asked you to help them straighten out the pipeline, set up more contro
 
     The initial workflow should appear similar to the following:
 
-    ![The initial pipline](./initial-pipeline.png)
+    ![The initial pipeline](./initial-pipeline.png)
 
 1. Edit the workflow to place the jobs in order.
 
@@ -95,7 +95,7 @@ They’ve asked you to help them straighten out the pipeline, set up more contro
 
     1. Select `Settings` -> `Environments` -> `production`.
     1. Select the checkbox next to `Required reviewers`.
-    1. Seach for your user name in the field labeled `Add up to 5 or more reviewers`.
+    1. Search for your user name in the field labeled `Add up to 5 or more reviewers`.
     1. Select `Save protection rules`.
     1. Run the workflow using the `workflow_dispatch` trigger to confirm the `production` environment prompts for a review before running.
 

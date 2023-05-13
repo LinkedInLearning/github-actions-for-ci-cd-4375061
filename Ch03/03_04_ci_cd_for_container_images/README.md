@@ -1,7 +1,7 @@
 # 03_04_ci_cd_for_container_images
 This lesson demonstrates how to set up a CI/CD workflow for container images.
 
-Specificaly, this demo implements a delivery workflow that:
+Specifically, this demo implements a delivery workflow that:
 - Reuses a workflow to run integration tests
 - Collects metadata
 - Builds the image
