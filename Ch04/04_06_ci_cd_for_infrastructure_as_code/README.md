@@ -1,7 +1,7 @@
 # 04_06_ci_cd_for_infrastructure_as_code
 
 
-## Reccommended Reading
+## Recommended Reading
 - [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
 # Using the Exercise Files
@@ -13,6 +13,7 @@
         AmazonS3FullAccess
 
 1. Create an S3 bucket to use for storing Terraform state files.
+
     1. Go to the [S3 homepage](s3.console.aws.amazon.com).
     1. Select `Create bucket`.
     1. Give your bucket a name.  The bucket name must be globally unique and must not contain spaces or uppercase letters. [See rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
@@ -23,9 +24,12 @@
 ## 2. Add and update the exercise files
 1. Create a new repo and add the exercise files for this lesson.
 1. Move the workflow files into `.github/workflows`:
+
     - [terraform-pipeline.yml](./terraform-pipeline.yml)
     - [destroy-resources.yml](./destroy-resources.yml)
+
 1. Update the terraform configuration to match your AWS account settings.
+
     1. Edit [terraform.tf](./terraform.tf).  Update the `bucket` and `region` assignments so that they match the bucket and region you used in the previous steps.
 
             terraform {
@@ -38,9 +42,9 @@
                 }
             }
 
-
 ## 3. Configure service account credentials; Configure branch and environment protection rules
 1. Configure the service account credentials.
+
     1. Select `Settings` -> `Secrets and variables` -> `Actions`.
     1. Select `New respository secret`.
     1. Create entries for the following using the values retrieved when you created the service account.
@@ -52,15 +56,17 @@
     1. Create an entry for `AWS_REGION` using the same region as the bucket created in previous steps.
 
 1. Create a branch protection rule.
+
     1. Select `Settings` -> `Branches` -> `Add branch protection rule`.
     1. Under "Branch name pattern" enter: `main`.
     1. Under "Protect matching branches":
         - Select `Require a pull request before merging`.
-        - Un-selecet `Require approvals`.  (This is because you can't approve your own merge requests.  Keeping this option selected would require you to override the merge protection on each pull request.)
+        - Un-select `Require approvals`.  (This is because you can't approve your own merge requests.  Keeping this option selected would require you to override the merge protection on each pull request.)
         - Select `Require status checks to pass before merging`.
         - At the bottom of the page, select `Create`.
 
 1. Create an environment protection rule.
+
     1. Select `Settings` -> `Environments` -> `New environment`.
     1. For the name, enter `Production`.  Select `Configure environment`.
     1. Select `Required reviewers`.

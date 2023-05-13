@@ -1,4 +1,4 @@
-name: 0-Terraform Pipeline
+name: 00-Terraform Pipeline
 
 on:
   push:
@@ -22,7 +22,7 @@ jobs:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ vars.AWS_REGION }}
-        
+
       - name: Checkout
         uses: actions/checkout@v3
 
@@ -65,7 +65,7 @@ jobs:
         uses: hashicorp/setup-terraform@v2
         with:
           terraform_version: 1.4.6
-          
+
       - name: Terraform Init
         id: init
         run: terraform init
@@ -85,14 +85,14 @@ jobs:
               print "Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed."
               exit
             }' plan.txt
-          
+
             awk '/Terraform will perform the following actions:/ {
               print "## Terraform will perform the following actions:"
               print "|Action|Resource|"
               print "|------|--------|"
               exit
             }' plan.txt
-          
+
             awk '/Terraform used the selected/{ next } /will be/ || /must be/ {print "|" $5 "|" $2 "|"; next} /Plan:/{ print "## " $0; next }' plan.txt \
               | sed -e 's/created/:white_check_mark: create/' -e 's/destroyed/:bangbang: destroy/' -e 's/replaced/:recycle: replace/'
           } > plan.md
@@ -146,5 +146,5 @@ jobs:
             awk '/::debug::stdout:/{ next } /Apply complete!/ { print "## " $0; exit }' apply.txt
             awk '/::debug::stdout:/{ next } /compute.amazonaws.com/ {print "- [" $1 "](http://" $3 ")"}' apply.txt | sed 's/"//g'
           } > apply.md
-          
+
           cat apply.md >> $GITHUB_STEP_SUMMARY
