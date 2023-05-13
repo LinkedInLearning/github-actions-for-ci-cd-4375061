@@ -88,7 +88,8 @@ Congrats on building the image.  Why not use it too!?
 
 Follow these steps:
 1. Confirm that `docker` is running on your local system.
-1. Download the image that was built, using the `main` branch as a reference:
+    - [Installing Docker Desktop](https://www.docker.com/products/docker-desktop/)
+3. Download the image that was built, using the `main` branch as a reference:
 
         docker pull ghcr.io/GITHUB_USERNAME/GITHUB_REPONAME:main
 
