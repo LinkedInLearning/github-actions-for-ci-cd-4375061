@@ -1,4 +1,4 @@
-# 3. Continious Delivery Workflows
+# 3. Continuous Delivery Workflows
 - [03_02_delivering_software_artifacts_and_packages](./03_02_delivering_software_artifacts_and_packages/README.md)
 - [03_03_ci_cd_for_software_packages](./03_03_ci_cd_for_software_packages/README.md)
 - [03_04_ci_cd_for_container_images](./03_04_ci_cd_for_container_images/README.md)

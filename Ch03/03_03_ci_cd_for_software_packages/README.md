@@ -8,7 +8,7 @@ Continuous delivery workflows for software packages follow a pattern with these 
 ## Registry configuration and authentication
 Each language has a specific configuration that identifies the target registry and how to authenticate with it.
 
-|Languagae |Config File          |
+|Language |Config File          |
 |----------|---------------------|
 |JavaScript|package.json         |
 |Ruby      |.gemspec             |
@@ -18,7 +18,7 @@ Each language has a specific configuration that identifies the target registry a
 ## Build and publish
 Each language will also use its own, native tooling to build and publish a package.
 
-|Languagae |Build, publish Commands       |
+|Language |Build, publish Commands       |
 |----------|------------------------------|
 |JavaScript|npm ci; npm publish           |
 |Ruby      |gem build; gem push           |
