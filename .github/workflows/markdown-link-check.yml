@@ -7,6 +7,7 @@ jobs:
   link-check:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/checkout@v3
       - name: Run Markdown Link Check
         uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
         with:
