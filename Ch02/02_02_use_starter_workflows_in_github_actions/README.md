@@ -2,6 +2,8 @@
 If you’re creating a new workflow, GitHub will analyze any files stored in your repo and suggest workflows based on the names of the files, the programming language the files contain, and any frameworks that might be configured for your project.
 
 ## Identifying Projects by Files
+GitHub provides starter workflows for a variety of languages and tooling.
+
 The following file extensions and dependency file names are used to identify projects for recommended workflows.
 
 | Programming Language | File Extensions | Dependency File Names          |
@@ -29,4 +31,13 @@ The following file extensions and dependency file names are used to identify pro
 | Groovy               | .groovy         | build.gradle, build.gradle.kts |
 | Perl                 | .pl             | META.json, META.yml            |
 | Objective-C          | .m              | Podfile, Cartfile              |
+
+## Recommended Reading
+- [Using starter workflows](https://docs.github.com/en/actions/using-workflows/using-starter-workflows)
+
+- [Starter Workflows - Repo](https://github.com/actions/starter-workflows)
+
+- [Using workflows](https://docs.github.com/en/actions/using-workflows)
+
+- []()
 
