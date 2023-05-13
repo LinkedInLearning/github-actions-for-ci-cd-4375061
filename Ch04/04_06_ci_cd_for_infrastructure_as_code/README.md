@@ -5,7 +5,7 @@
 - [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
 # Using the Exercise Files
-## Add permissions to your service account; Create an S3 bucket
+## 1. Add permissions to your service account; Create an S3 bucket
 1. _For details on creating or updating a service account, see the [instructions in lesson 04_04](../04_04_create_a_service_account/README.md)._
 
     Add the following permission to the service account you will use for this exercise:
@@ -18,10 +18,28 @@
     1. Give your bucket a name.  The bucket name must be globally unique and must not contain spaces or uppercase letters. [See rules for bucket naming](https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html).
     1. Confirm the region for the bucket.  It should be the same region you will use to configure your service account in the repository.
     1. Keep all defaults and select `Create bucket` at the bottom of the form.
+    1. Make a note of your bucket name. Make a note of the region where you created the bucket.
 
-## Add service account credentials; Configure branch and environment protection rules
+## 2. Add and update the exercise files
 1. Create a new repo and add the exercise files for this lesson.
-1. Move the workflow files into `.github/workflows`.
+1. Move the workflow files into `.github/workflows`:
+    - [terraform-pipeline.yml](./terraform-pipeline.yml)
+    - [destroy-resources.yml](./destroy-resources.yml)
+1. Update the terraform configuration to match your AWS account settings.
+    1. Edit [terraform.tf](./terraform.tf).  Update the `bucket` and `region` assignments so that they match the bucket and region you used in the previous steps.
+
+            terraform {
+                required_version = "~> 1.4"
+
+                backend "s3" {
+                    key    = "github-actions-cicd/terraform.tfstate"
+                    bucket = "ADD_YOUR_BUCKET_NAME_HERE" # the bucket
+                    region = "ADD_YOUR_REGION_NAME_HERE" # the region
+                }
+            }
+
+
+## 3. Configure service account credentials; Configure branch and environment protection rules
 1. Configure the service account credentials.
     1. Select `Settings` -> `Secrets and variables` -> `Actions`.
     1. Select `New respository secret`.
@@ -33,14 +51,23 @@
     1. Select `New repository variable`.
     1. Create an entry for `AWS_REGION` using the same region as the bucket created in previous steps.
 
-1. Create a Branch protection rule.
-    1. Select `Settings` -> `Branch protection rules` -> `Add branch protection rule`.
+1. Create a branch protection rule.
+    1. Select `Settings` -> `Branches` -> `Add branch protection rule`.
     1. Under "Branch name pattern" enter: `main`.
     1. Under "Protect matching branches":
         - Select `Require a pull request before merging`.
-        - Un-selecet `Require approvals`.  (This is because you can't approve your own merge requests.  As a result, you would need to overried the merge protection any way.)
+        - Un-selecet `Require approvals`.  (This is because you can't approve your own merge requests.  Keeping this option selected would require you to override the merge protection on each pull request.)
         - Select `Require status checks to pass before merging`.
         - At the bottom of the page, select `Create`.
+
+1. Create an environment protection rule.
+    1. Select `Settings` -> `Environments` -> `New environment`.
+    1. For the name, enter `Production`.  Select `Configure environment`.
+    1. Select `Required reviewers`.
+    1. In the search field, enter your GitHub user name and select it.
+    1. Select `Save protection rules`.
+
+## 4. Edit the Terraform configuration and create a pull request (PR)
 1. Edit the file [`variables.tf`](./variables.tf).
 1. Find the `server_count` code block at the top of the file.
 
@@ -50,7 +77,7 @@
             description = "The total number of VMs to create"
         }
 
-    Change `default     = 3` -> `default     = 4`.
+    Change `default     = 3` -> `default     = 2`.
 
 1. Select `Commit changes`.
 1. Select `Create a new branch for this commit and start a pull request`.  Then select, `Propose changes`.
@@ -61,9 +88,12 @@
 1. Observe the pipeline's progress and note the updates to the workflow summary.
 1. When prompted, select `Review deployments`.
 1. Select `Production` -> `Approve and deploy`.
-1. Observe the pipeline's progress an note the updates to the workflow summary.
+1. Observe the pipeline's progress and note the updates to the workflow summary.
+1. Follow the links in the workflow summary to view the e-commerce site deployed by the workflow.
 
-# Remove the resources
+## 5. Remove the resources
+To avoid costs associated with running resources in AWS, please remove them by running the [99-Destroy Resources workflow](./destroy-resources.yml).
+
 1. Select the `Actions` tab.
 1. Select the workflow `99-Destroy Resources`.
 1. Next to "This workflow has a workflow_dispatch event trigger.", Select `Run workflow` -> `Run workflow`.
@@ -71,5 +101,3 @@
 1. When prompted, select `Review deployments`.
 1. Select `Production` -> `Approve and deploy`.
 1. Observe the pipeline's progress and note the updates to the workflow summary.
-
-https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform
