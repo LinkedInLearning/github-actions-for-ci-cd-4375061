@@ -1,12 +1,53 @@
 # 04_06_ci_cd_for_infrastructure_as_code
+GitHub allows each step in a workflow to send text to the Actions interface using a variable called `GITHUB_STEP_SUMMARY`.
 
+`GITHUB_STEP_SUMMARY` is a variable that contains a path to a file where each step can store text.
+
+If the file contains any text at the end of a step’s run, the text is written to the workflow summary and styled as Github Flavored Markdown.  Along with Markdown, we can also use emojis to add extra flair to the step summary.
+
+## Example use of `GITHUB_STEP_SUMMARY`
+```
+- name: Terraform Plan
+continue-on-error: true
+id: plan
+run: |
+    terraform plan -input=false -no-color -out=tfplan
+    terraform show -no-color tfplan > plan.txt
+
+
+- name: Display the plan summary
+id: display
+run: |
+    {
+    awk '/No changes. Your infrastructure matches the configuration./ {
+        print "## " $0
+        print "Terraform has compared your real infrastructure against your configuration and found no differences, so no changes are needed."
+        exit
+    }' plan.txt
+
+    awk '/Terraform will perform the following actions:/ {
+        print "## Terraform will perform the following actions:"
+        print "|Action|Resource|"
+        print "|------|--------|"
+        exit
+    }' plan.txt
+
+    awk '/Terraform used the selected/{ next } /will be/ || /must be/ {print "|" $5 "|" $2 "|"; next} /Plan:/{ print "## " $0; next }' plan.txt \
+        | sed -e 's/created/:white_check_mark: create/' -e 's/destroyed/:bangbang: destroy/' -e 's/replaced/:recycle: replace/'
+    } > plan.md
+    cat plan.md >> $GITHUB_STEP_SUMMARY
+```
+
+Using the Terraform configuration provided, this produces the following output on the initial plan:
+
+![Terraform Plan Styled as Markdown with Emojis](./step-summary-example.png)
 
 ## Recommended Reading
 - [Adding a job summary with $GITHUB_STEP_SUMMARY](https://docs.github.com/en/actions/using-workflows/workflow-commands-for-github-actions#adding-a-job-summary)
 
 - [GitHub Markdown - Basic writing and formatting syntax](https://docs.github.com/en/get-started/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax)
 
-- [GitHub Markdown - Emoji-Cheat-Sheet.](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
+- [GitHub Markdown - Emoji-Cheat-Sheet](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)
 
 - [LinkedIn Learning - Learning Terraform](https://www.linkedin.com/learning/learning-terraform-15575129/learn-terraform-for-your-cloud-infrastructure)
 
@@ -106,7 +147,7 @@
 1. Follow the links in the workflow summary to view the e-commerce site deployed by the workflow.
 
 ## 5. Remove the resources
-To avoid costs associated with running resources in AWS, please remove them by running the [99-Destroy Resources workflow](./destroy-resources.yml).
+**To avoid costs associated with running resources in AWS, please remove them by running the `99-Destroy Resources` workflow.**
 
 1. Select the `Actions` tab.
 1. Select the workflow `99-Destroy Resources`.
