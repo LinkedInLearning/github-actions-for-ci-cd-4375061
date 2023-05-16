@@ -2,8 +2,8 @@
 This is the repository for the LinkedIn Learning course `GitHub Actions for CI/CD`. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ## What You Should Know
-- [Learning GitHub Actions]( https://www.linkedin.com/learning/learning-github-actions-2/)
-- [Exercise Files]( https://github.com/LinkedInLearning/github-actions-for-ci-cd-4375061)
+- [Learning GitHub Actions](https://www.linkedin.com/learning/learning-github-actions-2/)
+- [Exercise Files](https://github.com/LinkedInLearning/github-actions-for-ci-cd-4375061)
 
 _See the README file in the main branch for updated instructions and information._
 ## Instructions
