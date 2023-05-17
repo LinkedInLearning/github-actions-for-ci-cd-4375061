@@ -6,8 +6,6 @@ We can create environments, assign names to them, and create environment-specifi
 Review the following sections of the GitHub Actions documentation for more information on the topics discussed in this lesson.
 
 ## Recommended Reading
-- [Using environments for deployment (BROKEN)](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-deployment)
-
 - [Using environments for deployment](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment)
 
 - [Deployment protection rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules)
