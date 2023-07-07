@@ -1,6 +1,5 @@
 Ch01/01_02_what_is_ci_cd
 Ch01/01_03_github_actions_review
-Ch01/01_04_using_github_actions_for_ci_cd
 Ch02/02_02_use_starter_pipelines_in_github_actions
 Ch02/02_03_ci_for_javascript
 Ch02/02_04_ci_for_python
