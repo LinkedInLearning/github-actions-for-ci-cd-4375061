@@ -2,38 +2,36 @@
 This is the repository for the LinkedIn Learning course `GitHub Actions for CI/CD`. The full course is available from [LinkedIn Learning][lil-course-url].
 
 ## What You Should Know
-- [Learning GitHub Actions](https://www.linkedin.com/learning/learning-github-actions-2/)
-- [Exercise Files](https://github.com/LinkedInLearning/github-actions-for-ci-cd-4375061)
+- This is an intermediate level course.  
 
-_See the README file in the main branch for updated instructions and information._
+- You will be expected to already have some experience working with a high-level language like Python, JavaScript, or Go.
+	- If you’re not an application developer, it will help if you’re familiar with the software development process.  This includes any experience with building, testing, or deploying software applications.
+
+- You should be comfortable using the Git version control system and GitHub.  
+
+- You will be expected to already have some experience working with GitHub Actions.
+
+- If this is your first time working with GitHub Actions review this course:
+	- [Learning GitHub Actions](https://www.linkedin.com/learning/learning-github-actions-2/)
+
+- Exercise files are available:
+	- [Exercise Files](https://github.com/LinkedInLearning/github-actions-for-ci-cd-4375061)
+ 	- Follow the instructions for each chapter for steps to use the files.  For exmaple, you may be asked to create new repositories for demonstrations. 
+
 ## Instructions
-This repository has branches for each of the videos in the course. You can use the branch pop up menu in github to switch to a specific branch and take a look at the course at that stage, or you can add `/tree/BRANCH_NAME` to the URL to go to the branch you want to access.
+This repository has folders for each of the videos in the course.
 
-## Branches
-The branches are structured to correspond to the videos in the course. The naming convention is `CHAPTER#_MOVIE#`. As an example, the branch named `02_03` corresponds to the second chapter and the third video in that chapter.
-Some branches will have a beginning and an end state. These are marked with the letters `b` for "beginning" and `e` for "end". The `b` branch contains the code as it is at the beginning of the movie. The `e` branch contains the code as it is at the end of the movie. The `main` branch holds the final state of the code when in the course.
-
-When switching from one exercise files branch to the next after making changes to the files, you may get a message like this:
-
-    error: Your local changes to the following files would be overwritten by checkout:        [files]
-    Please commit your changes or stash them before you switch branches.
-    Aborting
-
-To resolve this issue:
-
-    Add changes to git using this command: git add .
-	Commit changes using this command: git commit -m "some message"
+### Folders
+The folders are structured to correspond to the videos in the course. The naming convention is `CHAPTER#_MOVIE#`. As an example, the folder named `02_03` corresponds to the second chapter and the third video in that chapter.
 
 ## Installing
 1. To use these exercise files, you must have the following installed:
-	- [list of requirements for course]
+	- git
 2. Clone this repository into your local machine using the terminal (Mac), CMD (Windows), or a GUI tool like SourceTree.
 3. [Course-specific instructions]
-
 
 [0]: # (Replace these placeholder URLs with actual course URLs)
 
 [lil-course-url]: https://www.linkedin.com/learning/
 [lil-thumbnail-url]: http://
 :)
-
