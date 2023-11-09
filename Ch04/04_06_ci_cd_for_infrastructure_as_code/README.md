@@ -53,8 +53,8 @@ Using the Terraform configuration provided, this produces the following output o
 
 - [Running Terraform in Automation](https://developer.hashicorp.com/terraform/tutorials/automation/automate-terraform)
 
-# Using the Exercise Files
-## 1. Add permissions to your service account; Create an S3 bucket
+## Using the Exercise Files
+### 1. Add permissions to your service account; Create an S3 bucket
 1. _For details on creating or updating a service account, see the [instructions in lesson 04_04](../04_04_create_a_service_account/README.md)._
 
     Add the following permission to the service account you will use for this exercise:
@@ -70,7 +70,7 @@ Using the Terraform configuration provided, this produces the following output o
     1. Keep all defaults and select `Create bucket` at the bottom of the form.
     1. Make a note of your bucket name. Make a note of the region where you created the bucket.
 
-## 2. Add and update the exercise files
+### 2. Add and update the exercise files
 1. Create a new repo and add the exercise files for this lesson.
 1. Move the workflow files into `.github/workflows`:
 
@@ -91,7 +91,7 @@ Using the Terraform configuration provided, this produces the following output o
                 }
             }
 
-## 3. Configure service account credentials; Configure branch and environment protection rules
+### 3. Configure service account credentials; Configure branch and environment protection rules
 1. Configure the service account credentials.
 
     1. Select `Settings` -> `Secrets and variables` -> `Actions`.
@@ -122,7 +122,7 @@ Using the Terraform configuration provided, this produces the following output o
     1. In the search field, enter your GitHub user name and select it.
     1. Select `Save protection rules`.
 
-## 4. Edit the Terraform configuration and create a pull request (PR)
+### 4. Edit the Terraform configuration and create a pull request (PR)
 1. Edit the file [`variables.tf`](./variables.tf).
 1. Find the `server_count` code block at the top of the file.
 
@@ -146,7 +146,7 @@ Using the Terraform configuration provided, this produces the following output o
 1. Observe the pipeline's progress and note the updates to the workflow summary.
 1. Follow the links in the workflow summary to view the e-commerce site deployed by the workflow.
 
-## 5. Remove the resources
+### 5. Remove the resources
 **To avoid costs associated with running resources in AWS, please remove them by running the `99-Destroy Resources` workflow.**
 
 1. Select the `Actions` tab.

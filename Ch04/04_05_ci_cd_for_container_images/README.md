@@ -5,12 +5,12 @@
 
 - [Deployment protection rules](https://docs.github.com/en/actions/deployment/targeting-different-environments/using-environments-for-deployment#deployment-protection-rules)
 
-# Using the Exercise Files
-## 1. Create a repo; add service account credentials
+## Using the Exercise Files
+### 1. Create a repo; add service account credentials
 1. Create a new repo.
 1. Review the steps in [Create a Service Account](../04_04_create_a_service_account/README.md) to add service account credentials to the repo
 
-## 2. Create a repo in the Elastic Container Registry (ECR); Push an image
+### 2. Create a repo in the Elastic Container Registry (ECR); Push an image
 1. In your AWS account, go the [ECR homepage](https://console.aws.amazon.com/ecr/home)
 1. Select `Get started`.
 1. Under settings, confirm `Private` is selected
@@ -24,7 +24,7 @@
 1. On the ECR page, select the repo you created earlier.
 1. Confirm that an image has been pushed to the repo.
 
-## 3. Create two App Runner services
+### 3. Create two App Runner services
 1. Browse to the [App Runner homepage](https://console.aws.amazon.com/apprunner/home)
 1. Create an App Runner service for the `Staging` environment.
 
@@ -50,7 +50,7 @@
 
     **For the `Production` service, make sure that the Manual trigger is selected.**
 
-## 4. Create environments for the App Runner services
+### 4. Create environments for the App Runner services
 
 1. Select each App Runner service and save the values for:
     - `Default domain`
@@ -71,7 +71,7 @@
 1. Under `Environment variables`, select `Add variable`.
 1. Create variables for `SERVICE_ARN` and `URL` using the values from the App Runner configuration for Staging.
 
-## 5. Run the workflow
+### 5. Run the workflow
 1. Select the `Actions` tab.
 1. Select `0-Container Deployment Pipeline`.
 1. Select `Run workflow` -> `Run workflow`.
@@ -81,7 +81,7 @@
 1. Observe the pipeline's progress.
 1. Follow the links on the tiles for each job to view the deployed application.
 
-## 6. Remove the resources
+### 6. Remove the resources
 **To avoid costs associated with running resources in AWS, please remove them.**
 
 1. Remove App Runner services:

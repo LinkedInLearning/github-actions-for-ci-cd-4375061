@@ -22,7 +22,7 @@ Project sites are available at URLs similar to the following:
 
 GitHub Pages can also be configured to use a custom domain.
 
-# Jekyll Front Matter
+## Jekyll Front Matter
 To help Jekyll with compiling and publishing Markdown files, files contain text near the top of the file called [front matter](https://jekyllrb.com/docs/front-matter/).
 
 > Any file that contains a YAML front matter block will be processed by Jekyll as a special file. The front matter must be the first thing in the file and must take the form of valid YAML set between triple-dashed lines. Here is a basic example:
@@ -33,12 +33,12 @@ To help Jekyll with compiling and publishing Markdown files, files contain text 
     permalink: /
     ---
 
-# Recommended Reading
+## Recommended Reading
 - [GitHub Pages Documentation](https://docs.github.com/en/pages)
 
 - [GitHub Pages Usage limits](https://docs.github.com/en/pages/getting-started-with-github-pages/about-github-pages#usage-limits)
 
-# Using the Exercise Files
+## Using the Exercise Files
 1. Create a new repo and add the exercise files for this lesson.
 
     Make sure all `*.png` files are moved into the `images` directory.
