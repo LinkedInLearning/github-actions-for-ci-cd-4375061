@@ -14,6 +14,7 @@ Specifically, this demo implements a delivery workflow that:
         Completing this step is key to having the workflow run properly!
 
 1. In the repo select the *Actions* tab.
+1. Select *New Workflow*.
 1. Select and configure the workflow *Publish Docker Container*.
 1. Under `jobs`, add an ID named “integration” and the keyword `uses` followed by the path to `python-ci-workflow.yml`.
 
@@ -28,15 +29,15 @@ Specifically, this demo implements a delivery workflow that:
             integration:
                 uses: ./.github/workflows/python-ci-workflow.yml
                 permissions:
-                contents: read
-                checks: write
+                  contents: read
+                  checks: write
 
 1. Under the job with the ID `build`, add `needs`, followed by the ID for the integration job.  This will cause the `build` job to wait for the `integration` job to complete.
 
         build:
             needs: [integration]
 
-1. Select *Start Commit* and then select *Commit New File*.
+1. Select *Commit changes...* and then select *Commit changes*.
 1. Select the *Actions* tab.
 1. Select the running workflow.
 1. Observe the `integration/build` job followed by the `build` job.
@@ -45,20 +46,3 @@ Specifically, this demo implements a delivery workflow that:
 1. Refresh the page as needed until the package is listed under *Packages*.
 1. Select the package and review the details on the package page.
 
-# Fixing Warnings in the Annotations Section
-At the time this course was published, the *Publish Docker Container* workflow contained actions based on `Node 12`.
-
-[Node 12 has been out of support since April 2022 and has been deprecated by Github Actions](https://github.blog/changelog/2022-09-22-github-actions-all-actions-will-begin-running-on-node16-instead-of-node12/).
-
-This causes warnings to be written to the Actions UI.
-
-To remove these warnings, the version for actions used in this workflow need to be updated.
-
-Update your workflow to use the following actions with the indicated versions.  Also, check the provided Marketplace page to see if newer versions are available.
-
-|Action Marketplace Page|Action Name and Version|
-|--|--|
-|[Docker Setup Buildx](https://github.com/marketplace/actions/docker-setup-buildx)|`docker/setup-buildx-action@v2.5.0`|
-|[Docker Login](https://github.com/marketplace/actions/docker-login)|`docker/login-action@v2.1.0`|
-|[Docker Metadata action](https://github.com/marketplace/actions/docker-metadata-action)|`docker/metadata-action@v4.4.0`|
-|[Build and push Docker images](https://github.com/marketplace/actions/build-and-push-docker-images)|`docker/build-push-action@v4.0.0`|
